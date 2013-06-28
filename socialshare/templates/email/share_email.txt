@@ -1,0 +1,5 @@
+{% load i18n %}{% trans "Hi" %} {{friend_name|capfirst}},
+
+{% blocktrans with name|capfirst as name %}{{name}} has referred you a link.{% endblocktrans %}
+
+{{url}}
