@@ -47,7 +47,7 @@ You can output those meta tags using the following template tag shortcut in the 
 	
 * `image_url` is optional *
 
-Finally, we need to include the necessary javascript, as such:
+Include the necessary javascript, as such:
 
 	<script>
 		{% facebook_js %}
@@ -61,6 +61,11 @@ Finally, we need to include the necessary javascript, as such:
 The `href` attribute will be the URL that you would like to share.
 The `title` attribute will be the content of the tweet.
 
+Include the necessary javascript, as such:
+
+	<script>
+		{% twitter_js %}
+	</script>
 
 ### LinkedIn
 
@@ -70,6 +75,11 @@ The `href` attribute will be the URL that you would like to share.
 The `title` attribute will be the title of the post.
 The `data-description` attribute will be the content of the post.
 
+Include the necessary javascript, as such:
+
+	<script>
+		{% linkedin_js %}
+	</script>
 
 ### Google+
 
@@ -77,6 +87,11 @@ The `data-description` attribute will be the content of the post.
 	
 The `href` attribute will be the URL that you would like to share.
 
+Include the necessary javascript, as such:
+
+	<script>
+		{% google_js %}
+	</script>
 
 ### Share email
 
@@ -89,5 +104,6 @@ Include the tag to generate the modal form as HTML:
 	{% share_email_html %}
 	
 Include the tag to generate the javacript for handling the form and modal:
-
-	{% share_email_js %}
+	<script>
+		{% share_email_js %}
+	</script>
