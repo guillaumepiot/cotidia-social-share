@@ -42,7 +42,7 @@ for dirpath, dirnames, filenames in os.walk('socialshare'):
         # Eg: for 'cmsbase/'' , key will be 8                                          #
         ################################################################################
 
-        prefix = dirpath[11:] # Strip "socialshare/" or "socialshare\"
+        prefix = dirpath[12:] # Strip "socialshare/" or "socialshare\"
         for f in filenames:
             data_files.append(os.path.join(prefix, f))
 
