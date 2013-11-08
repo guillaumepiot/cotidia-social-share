@@ -1,5 +1,5 @@
 // We bind a new event to our link
-$('.socialshare.linkedin').click(function(e){
+$(document).on('click', '.socialshare.linkedin', function(e){
  
   //We tell our browser not to follow that link
   e.preventDefault();

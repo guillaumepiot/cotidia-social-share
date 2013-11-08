@@ -1,4 +1,4 @@
-$('.socialshare.tumblr').click(function(e){
+$(document).on('click', '.socialshare.tumblr', function(e){
  
   //We tell our browser not to follow that link
   e.preventDefault();

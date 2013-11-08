@@ -1,5 +1,5 @@
 // We bind a new event to our link
-$('.socialshare.google').click(function(e){
+$(document).on('click', '.socialshare.google',  function(e){
  
   //We tell our browser not to follow that link
   e.preventDefault();
