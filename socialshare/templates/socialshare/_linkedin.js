@@ -9,6 +9,8 @@ $('.socialshare.linkedin').click(function(e){
  
   //We get the title of the link
   var title  = escape($(this).attr('title'));
+  if(title=='undefined') var title  = escape($(this).attr('data-title'));
+
   var summary = escape($(this).attr('data-summary'));
  
   //We trigger a new window with the Twitter dialog, in the middle of the page
