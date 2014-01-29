@@ -26,7 +26,7 @@ def share_email(request):
 			friend_email = form.cleaned_data['friend_email']
 			url = form.cleaned_data['url']
 
-			subject = _('Event referral from %s' % sender_name)
+			subject = _('Link referral from %s' % sender_name)
 			context={'sender_name':sender_name, 'sender_email':sender_email, 'friend_name':friend_name, 'friend_email':friend_email, 'subject':subject, 'url':url} 
 			text_content = render_to_string('email/share_email.txt', context)
 			html_content = render_to_string('email/share_email.html', context)

@@ -32,7 +32,7 @@ success: function(data) {
 			$('input[name=friend_name]').attr('value','');
 			$('input[name=friend_email]').attr('value','');
 			$('.submit').attr('value','{% trans "Send" %}');
-			$('#form-share-email').before('<div class="alert alert-success">{% trans "The event link has been sent to your friend" %}</div>');
+			$('#form-share-email').before('<div class="alert alert-success">{% trans "The link has been sent to your friend" %}</div>');
 			setTimeout("$('#share-email-modal').modal('hide');", 2000);
 		}
         
