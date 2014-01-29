@@ -104,6 +104,7 @@ Include the tag to generate the modal form as HTML:
 	{% share_email_html %}
 	
 Include the tag to generate the javacript for handling the form and modal:
+	
 	<script>
 		{% share_email_js %}
 	</script>
