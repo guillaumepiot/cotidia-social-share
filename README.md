@@ -95,6 +95,12 @@ Include the necessary javascript, as such:
 
 ### Share email
 
+Add the AJAX submission url to your patterns:
+
+	url(r'^share/', include('socialshare.urls', namespace='socialshare')),
+
+The html:
+
 	<a href="http://example.com/page-to-share" class="socialshare email">Share by email</a>
 	
 The `href` attribute will be the URL that you would like to share.
