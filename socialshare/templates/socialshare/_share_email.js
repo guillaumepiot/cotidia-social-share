@@ -1,8 +1,10 @@
 {% load i18n %}
 $(document).on('click', '.socialshare.email', function(e){
 	e.preventDefault();
+	$('#share-email-modal form').trigger('reset');
  	$('#share-email-modal').modal();
  	$('#share-email-modal').find('#id_url').val($(this).attr('href'));
+
 });
 
 var options = { 
