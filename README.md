@@ -99,6 +99,10 @@ Add the AJAX submission url to your patterns:
 
 	url(r'^share/', include('socialshare.urls', namespace='socialshare')),
 
+Javascript:
+
+The form submission requires the AJAX form Jquery plugin: http://malsup.github.io/min/jquery.form.min.js
+
 The html:
 
 	<a href="http://example.com/page-to-share" class="socialshare email">Share by email</a>

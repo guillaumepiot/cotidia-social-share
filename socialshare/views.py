@@ -31,7 +31,7 @@ def share_email(request):
 			text_content = render_to_string('email/share_email.txt', context)
 			html_content = render_to_string('email/share_email.html', context)
 
-			msg = EmailMultiAlternatives(subject, text_content, sender_email, [friend_email])
+			msg = EmailMultiAlternatives(subject, text_content, '%s <%s>' % (sender_name, sender_email), [friend_email])
 			msg.attach_alternative(html_content, "text/html")
 			msg.send()
 			
