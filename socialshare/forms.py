@@ -7,3 +7,4 @@ class ShareEmailForm(forms.Form):
 	sender_email = forms.CharField(label=_('Your email address'), max_length=50, widget=forms.TextInput(attrs={'placeholder':_('Email address'), 'class':"form-control"}), error_messages={'required':_('Please enter your email address')})
 	friend_name = forms.CharField(label=_('Your friend'), max_length=50, widget=forms.TextInput(attrs={'placeholder':_('Name'), 'class':"form-control"}), error_messages={'required':_('Please enter your friend\'s name')})
 	friend_email = forms.EmailField(label=_('Your friend\'s email address'), max_length=100, widget=forms.TextInput(attrs={'placeholder':_('Email address'), 'class':"form-control"}), error_messages={'required':_('Please enter your friend\'s email address')})
+	message = forms.CharField(widget=forms.Textarea(attrs={'class':"form-control"}), required=False, error_messages={'required':_('Please enter a message')})

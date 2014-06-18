@@ -1,5 +1,9 @@
 {% load i18n %}{% trans "Hi" %} {{friend_name|capfirst}},
 
-{% blocktrans with name|capfirst as name %}{{name}} has referred you a link.{% endblocktrans %}
+{% if message %}
+	{{message}}
+{% else %}
+	{% blocktrans with sender_name|capfirst as name %}{{sender_name}} has referred you a link.{% endblocktrans %}
+{% endif %}
 
 {{url}}

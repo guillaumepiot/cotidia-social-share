@@ -6,6 +6,7 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 
 from socialshare.forms import ShareEmailForm
+from socialshare import settings as socialshare_settings
 
 def share_email(request):
 
@@ -24,10 +25,14 @@ def share_email(request):
 			sender_email = form.cleaned_data['sender_email']
 			friend_name = form.cleaned_data['friend_name']
 			friend_email = form.cleaned_data['friend_email']
+			if socialshare_settings.SHARE_EMAIL_MESSAGE:
+				message = form.cleaned_data['message']
+			else:
+				message = None
 			url = form.cleaned_data['url']
 
 			subject = 'Link referral from %s' % sender_name
-			context={'sender_name':sender_name, 'sender_email':sender_email, 'friend_name':friend_name, 'friend_email':friend_email, 'subject':subject, 'url':url} 
+			context={'sender_name':sender_name, 'sender_email':sender_email, 'friend_name':friend_name, 'friend_email':friend_email, 'message':message, 'subject':subject, 'url':url} 
 			text_content = render_to_string('email/share_email.txt', context)
 			html_content = render_to_string('email/share_email.html', context)
 

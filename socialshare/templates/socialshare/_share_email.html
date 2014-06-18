@@ -12,8 +12,7 @@
 				{{form.url}}
 				{% for field in form %}
 					{% if  forloop.counter0 > 0 %}
-						{% if forloop.counter0 == 1 %}<label>{{field.label}}</label>{% endif %}
-						{% if forloop.counter0 == 3 %}<label>{{field.label}}</label>{% endif %}
+						{% if forloop.counter0 == 1 or forloop.counter0 == 3 or forloop.counter0 > 4 %}<label>{{field.label}}</label>{% endif %}
 						{{field}}
 					{% endif %}
 				{% endfor %}

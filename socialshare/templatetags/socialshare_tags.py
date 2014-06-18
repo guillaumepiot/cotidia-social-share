@@ -2,6 +2,7 @@ from django import template
 register = template.Library()
 
 from socialshare.forms import ShareEmailForm
+from socialshare import settings as socialshare_settings
 
 ############
 # Facebook #
@@ -58,5 +59,12 @@ def share_email_js():
 
 @register.inclusion_tag('socialshare/_share_email.html')
 def share_email_html():
-    form = ShareEmailForm()
+    initial = {
+        'message':socialshare_settings.SHARE_EMAIL_MESSAGE_PLACEHOLDER
+    }
+    form = ShareEmailForm(initial=initial)
+
+    if not socialshare_settings.SHARE_EMAIL_MESSAGE:
+        del form.fields['message']
+
     return {'form':form}
