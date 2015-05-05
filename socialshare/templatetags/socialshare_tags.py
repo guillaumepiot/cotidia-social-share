@@ -59,9 +59,7 @@ def share_email_js():
 
 @register.inclusion_tag('socialshare/_share_email.html')
 def share_email_html():
-    initial = {
-        'message':socialshare_settings.SHARE_EMAIL_MESSAGE_PLACEHOLDER
-    }
+    initial = {}
     form = ShareEmailForm(initial=initial)
 
     if not socialshare_settings.SHARE_EMAIL_MESSAGE:
