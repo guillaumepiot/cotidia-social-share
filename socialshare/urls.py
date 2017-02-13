@@ -1,5 +1,8 @@
-from django.conf.urls import url, patterns
+from django.conf.urls import url
 
-urlpatterns = patterns('socialshare.views',
-    url(r'^send-friend/$', 'share_email', name='social-share-email'),
-)
+from socialshare.views import share_email
+
+
+urlpatterns = [
+    url(r'^send-friend/$', share_email, name='social-share-email'),
+]
