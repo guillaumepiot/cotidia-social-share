@@ -1,9 +1,9 @@
 from django.urls import path
 
-from socialshare.views import share_email
+from cotidia.socialshare import views
 
-app_name = 'socialshare'
+app_name = 'cotidia.socialshare'
 
 urlpatterns = [
-    path('^send-friend', share_email, name='social-share-email'),
+    path('send-email', views.ShareEmail.as_view(), name='send-email'),
 ]

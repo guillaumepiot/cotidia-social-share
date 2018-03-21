@@ -1,0 +1,39 @@
+{% load i18n %}
+<div class="dialog dialog--modal share-email-modal">
+    <div class="dialog__content">
+        <form action="{% url 'socialshare-api:send-email' %}" data-url="{% url 'socialshare-api:send-email' %}" method="post" class="share-email-form">
+        <div class="dialog__header dialog-header dialog-section--padded">
+            <div class="dialog-header__title ">
+                Share via email
+            </div>
+            <div class="dialog-header__action dialog-header__action--right">
+                <button type="button" class="dialog-header__action-btn close-dialog">
+                    <span class="fa fa-close"></span>
+                </button>
+            </div>
+        </div>
+        <div class="dialog__body">
+                {% csrf_token %}
+                {% with fieldset_template_name="admin/generic/form/fieldset_as_div.html" field_template_name="admin/generic/form/field_as_div.html" %}
+                    {% for elm in form %}
+                        {% if elm.is_fieldset %}
+                            {% include fieldset_template_name with fieldset=elm %}
+                        {% else %}
+                            <div class="form__row">
+                                {% include field_template_name with field=elm %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endwith %}
+        </div>
+        <div class="dialog__footer dialog-footer dialog-section--padded">
+            <div class="dialog-footer__actions">
+                <button class="btn btn--primary" type="submit">Share</button>
+            </div>
+            <div class="dialog-footer__actions">
+                <button class="btn btn--cancel close-dialog">Close</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>

@@ -10,111 +10,101 @@ Social share generate the javascript required to share content on the following 
 
 Social share also support email sharing by generating a modal form.
 
-* Note: Email sharing requires the Twitter Bootstrap UI and jQuery to handle the modal and form formatting *
-
-* Note: Share functionality may not work properly if the site is run locally, as the social network won't be ablt to fetch meta data from your local page *
+> Note: Share functionality may not work properly if the site is run locally, as the social network won't be ablt to fetch meta data from your local page.
 
 
-##Install
+## Install
 
-Add `socialshare` to your settings `INSTALLED_APPS`.
+Add `cotidia.socialshare` to your settings `INSTALLED_APPS`.
 
 Load `socialshare_tags` in your template.
-	
-	{% load socialshare_tags %}
 
+```
+{% load socialshare_tags %}
+```
 
-##Implementation
+Include the bootstraing script on the page that needs sharing:
 
-To call the share pop up, all you need is a link with the appropriate class and attributes.
+```html
+<script type="text/javascript" src="{% static "js/cotidia.socialshare.js" %}"></script>
+```
 
+## Facebook share
 
-### Facebook
+Use the `share-facebook` against the link element.
 
-	<a href="http://example.com/page-to-share" class="socialshare facebook">Share on Facebook</a>
-	
+E.g.:
+
+```html
+<a href="<full_page_url>" title="Share on Facebook" class="share-facebook">Share on Facebook</a>
+```
+
 The `href` attribute will be the URL that you would like to share.
 
-Facebook requires the OpenGraph meta tags to fetch the content of the share post. So the following needs to be added on your page:
 
-	<meta property="og:title" content="Title of the page" />
-	<meta property="og:description" content="The content of the post" />
-	<meta property="og:image" content="http://absolute/url/to/thumb/image" />
-	
-You can output those meta tags using the following template tag shortcut in the head of your page:
+## Twitter share
 
-	{% facebook_meta 'title' 'description' 'image_url' %}
-	
-* `image_url` is optional *
+Use the `share-twitter` against the link element. Use `data-text` to setup a default tweet message.
 
-Include the necessary javascript, as such:
+E.g.:
 
-	<script>
-		{% facebook_js %}
-	</script>
-	
+```html
+<a href="<full_page_url>" title="Share on Twitter" class="share-twitter" data-text="Best page ever">Share on Twitter</a>
+```
 
-### Twitter
-
-	<a href="http://example.com/page-to-share" title="The content of the tweet" class="socialshare twitter">Share on Twitter</a>
-	
-The `href` attribute will be the URL that you would like to share.
-The `title` attribute will be the content of the tweet.
-
-Include the necessary javascript, as such:
-
-	<script>
-		{% twitter_js %}
-	</script>
-
-### LinkedIn
-
-	<a href="http://example.com/page-to-share" title="The title of the post" data-summary="The content of the post" class="socialshare linkedin">Share on LinkedIn</a>
-	
-The `href` attribute will be the URL that you would like to share.
-The `title` attribute will be the title of the post.
-The `data-description` attribute will be the content of the post.
-
-Include the necessary javascript, as such:
-
-	<script>
-		{% linkedin_js %}
-	</script>
-
-### Google+
-
-	<a href="http://example.com/page-to-share" class="socialshare google">Share on Google</a>
-	
 The `href` attribute will be the URL that you would like to share.
 
-Include the necessary javascript, as such:
+## LinkedIn share
 
-	<script>
-		{% google_js %}
-	</script>
+Use the `share-linkedin` against the link element. Use `data-title` to setup a default post title.
 
-### Share email
+E.g.:
+
+```html
+<a href="<full_page_url>" title="Share on LinkedIn" class="share-linkedin" data-title="Best page ever">Share on LinkedIn</a>
+```
+
+The `href` attribute will be the URL that you would like to share.
+
+## Google+
+
+Use the `share-google` against the link element.
+
+E.g.:
+
+```html
+<a href="<full_page_url>" title="Share on Google" class="share-google">Share on Google</a>
+```
+
+The `href` attribute will be the URL that you would like to share.
+
+## Share email
 
 Add the AJAX submission url to your patterns:
 
-	url(r'^share/', include('socialshare.urls', namespace='socialshare')),
+```python
+urlpattenrs = [
+    path('share/', include('cotidia.socialshare.urls', namespace='socialshare-api')),
+]
+```
 
-Javascript:
+Ensure that the socialshare Javascript is inclded on the page:
 
-The form submission requires the AJAX form Jquery plugin: http://malsup.github.io/min/jquery.form.min.js
+```html
+<script type="text/javascript" src="{% static "js/cotidia.socialshare.js" %}"></script>
+```
 
-The html:
+Output the modal form using the template tag:
 
-	<a href="http://example.com/page-to-share" class="socialshare email">Share by email</a>
-	
+```html
+{% load socialshare_tags %}
+{% share_email_html %}
+```
+
+Add the share link (Use the `share-email` against the link element):
+
+```html
+<a href="<full_page_url>" title="Email this" class="share-email">
+```
+
 The `href` attribute will be the URL that you would like to share.
-
-Include the tag to generate the modal form as HTML:
-
-	{% share_email_html %}
-	
-Include the tag to generate the javacript for handling the form and modal:
-	
-	<script>
-		{% share_email_js %}
-	</script>

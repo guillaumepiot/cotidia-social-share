@@ -1,63 +1,66 @@
-import json
+from django.db import transaction
 
-from django.http import HttpResponse
-from django.template.loader import render_to_string
-from django.core.mail import EmailMultiAlternatives
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.renderers import JSONRenderer
 
-from socialshare.forms import ShareEmailForm
-from socialshare import settings as socialshare_settings
+from cotidia.socialshare.serializers import ShareEmailSerializer
+from cotidia.socialshare.notices import ShareEmailNotice
 
 
-def share_email(request):
+class ShareEmail(APIView):
+    """A public api views to share by email."""
 
-    errors = {}
-    success = False
-    initial = {}
+    authentication_classes = ()
+    permission_classes = ()
 
-    if request.method == "POST":
-        form = ShareEmailForm(request.POST)
-        if form.is_valid():
-            errors = False
-            success = True
+    @transaction.atomic
+    def post(self, request, *args, **kwargs):
 
-            sender_name = form.cleaned_data['sender_name']
-            sender_email = form.cleaned_data['sender_email']
-            friend_name = form.cleaned_data['friend_name']
-            friend_email = form.cleaned_data['friend_email']
-            if socialshare_settings.SHARE_EMAIL_MESSAGE:
-                message = form.cleaned_data['message']
-            else:
-                message = None
-            url = form.cleaned_data['url']
+        success_message = kwargs.get(
+            "success_message",
+            "The page has been shared."
+        )
 
-            subject = 'Link referral from %s' % sender_name
-            context = {
-                'sender_name': sender_name,
-                'sender_email': sender_email,
-                'friend_name': friend_name,
-                'friend_email': friend_email,
-                'message': message,
-                'subject': subject,
-                'url': url
-            }
-            text_content = render_to_string('email/share_email.txt', context)
-            html_content = render_to_string('email/share_email.html', context)
+        serializer = ShareEmailSerializer(data=request.data)
 
-            msg = EmailMultiAlternatives(
-                subject, text_content, '%s <%s>' % (sender_name, sender_email), [friend_email]
+        if serializer.is_valid():
+            data = serializer.data
+
+            url = data.get('url')
+            sender_name = data.get('sender_name')
+            sender_email = data.get('sender_email')
+            friend_name = data.get('friend_name')
+            friend_email = data.get('friend_email')
+            message = data.get('message')
+
+            sender = '{} <{}>'.format(sender_name, sender_email)
+            recipients = ['{} <{}>'.format(friend_name, friend_email)]
+            reply_to = sender
+            subject = "{} has shared a page with you".format(sender_name)
+
+            notice = ShareEmailNotice(
+                subject=subject,
+                sender=sender,
+                reply_to=reply_to,
+                recipients=recipients,
+                context={
+                    'url': url,
+                    'sender_name': sender_name,
+                    'friend_name': friend_name,
+                    'message': message,
+                }
             )
-            msg.attach_alternative(html_content, "text/html")
-            msg.send()
 
-        else:
-            for field in form:
-                if field.errors:
-                    errors[field.name] = field.errors
-    else:
-        form = ShareEmailForm(initial=initial)
+            # Send the notice straight away
+            notice.send()
 
-    results = {'error': errors, 'success': success}
-    return HttpResponse(
-        json.dumps(results),
-        content_type='application/json'
-    )
+            data = {
+                "message": success_message,
+                "data": serializer.data
+            }
+
+            return Response(data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
