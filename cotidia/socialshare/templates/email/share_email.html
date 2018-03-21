@@ -1,9 +1,171 @@
-{% load i18n %}{% trans "Hi" %} {{friend_name|capfirst}},
-<br><br>
-{% if message %}
-	{{message|linebreaksbr}}
-{% else %}
-	{% blocktrans with sender_name|capfirst as name %}{{sender_name}} has referred you a link.{% endblocktrans %}
-{% endif %}
-<br><br>
-<a href="{{url}}">{{url}}</a>
+{% load i18n %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- So that mobile will display zoomed in -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- enable media queries for windows phone 8 -->
+<meta name="format-detection" content="telephone=no"> <!-- disable auto telephone linking in iOS -->
+<title>Social Share</title>
+
+<!--[if gte mso 10]>
+  <style>
+    /* Style Definitions for MSO 2010 */
+    table.MsoNormalTable, p, span, div, table, tr, td, th, a { mso-style-priority: 99; font-family: "Arial","sans-serif"; }
+  </style>
+<![endif]-->
+
+
+<style type="text/css">
+body {
+    margin: 0;
+    padding: 0;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    font-family: Arial, Helvetica, san-serif;
+    font-weight: 400;
+    background-color: #f8f8f8;
+}
+
+table {
+  border-spacing: 0;
+}
+
+table td {
+  border-collapse: collapse;
+}
+
+.ExternalClass {
+  width: 100%;
+}
+
+.ExternalClass,
+.ExternalClass p,
+.ExternalClass span,
+.ExternalClass font,
+.ExternalClass td,
+.ExternalClass div {
+  line-height: 100%;
+}
+
+.ReadMsgBody {
+  width: 100%;
+  background-color: #f8f8f8;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+table {
+  mso-table-lspace: 0pt;
+  mso-table-rspace: 0pt;
+}
+
+.table-center {
+    table-layout: fixed;
+    margin: 0 auto;
+}
+
+img {
+  -ms-interpolation-mode: bicubic;
+}
+
+@media screen and (max-width: 599px) {
+    td[class="container"],
+    table[class="container"] {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    img[class="full-images"]{
+        margin: 0 !important;
+        width: 100% !important;
+        height: auto;
+    }
+    tr[class="hide-me"],
+    td[class="hide-me"] {
+        display: none !important;
+    }
+    div[class*="text-large"],span[class*="text-large"] {
+        font-size: 15px !important;
+        line-height: 21px !important;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    td[class*="container-padding"] {
+        padding-left: 22px !important;
+        padding-right: 22px !important;
+    }
+}
+</style>
+
+</head>
+<body style="margin:0; padding:0;" bgcolor="#f8f8f8">
+
+    <!-- 100% background wrapper (grey background) -->
+    <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="#f8f8f8" style="table-layout: fixed;">
+        <tr>
+            <td align="center" valign="top" bgcolor="#f8f8f8" style="background-color: #f8f8f8;">
+
+                    <table border="0" width="600" cellpadding="0" cellspacing="0" class="container" style="width: 600px; max-width: 600px; background-color: #ffffff; text-align: center;" bgcolor="#fff">
+                        <tr>
+                            <td class="container" style="padding-left: 0; padding-right: 0; text-align: center;">
+                                <img editable src="https://placehold.it/1240x720/454545/ffffff" class="full-images" style="display: block; border: none;" align="center" width="600" height="360">
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table border="0" width="600" cellpadding="0" cellspacing="0" class="container" style="width: 600px; max-width: 600px; background-color: #ffffff; text-align: center;" bgcolor="#ffffff">
+                        <tr class="hide-me">
+                            <td class="" style="font-size: 10px; line-height: 10px;" height="10">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="" style="font-size: 30px; line-height: 30px;" height="30">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="container-padding" style="padding-left: 25px; padding-right: 25px; font-family: Arial, Helvetica, san-serif; font-weight: bold; font-size: 21px; line-height: 28px; color: #333; text-align: center;">
+                                <div class="text-large" style="font-family: Arial, Helvetica, san-serif; font-size: 21px; line-height: 28px; color: #333; font-weight: bold;">{% trans "Hi" %} {{friend_name|capfirst}}, {% if message %}{{message|linebreaksbr}}{% else %}{% blocktrans with sender_name|capfirst as name %}{{sender_name}} has referred you a link.{% endblocktrans %}{% endif %}</div>
+                            </td>
+                        </tr>
+                        <tr class="hide-me">
+                            <td class="" style="font-size: 10px; line-height: 10px;" height="10">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="" style="font-size: 30px; line-height: 30px;" height="30">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="container-padding" style="padding-left: 25px; padding-right: 25px;">
+                                <div align="left">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+                                        <tr>
+                                            <td>
+                                                <table border="0" cellspacing="0" cellpadding="0" align="center">
+                                                    <tr>
+                                                        <td align="center" bgcolor="ffffff" align="center">
+                                                            <a href="{{url}}" target="_blank" style="font-size: 16px; font-family: 'Roboto', San Francisco, Helvetica, Arial, san-serif; color: #0094D5; text-decoration: none; text-decoration: none; padding-top: 15px; padding-right: 40px; padding-bottom: 15px; padding-left: 40px; line-height: normal; border: 2px solid #0094D5; display: inline-block;">View the article &raquo;</a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="hide-me">
+                            <td class="" style="font-size: 15px; line-height: 15px;" height="15">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="" style="font-size: 30px; line-height: 30px;" height="30">&nbsp;</td>
+                        </tr>
+                    </table>
+            </td>
+        </tr>
+    </table>
+    <!--/100% background wrapper-->
+</body>
+</html>
+
+
