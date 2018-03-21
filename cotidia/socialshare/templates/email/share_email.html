@@ -126,7 +126,11 @@ img {
                         </tr>
                         <tr>
                             <td class="container-padding" style="padding-left: 25px; padding-right: 25px; font-family: Arial, Helvetica, san-serif; font-weight: bold; font-size: 21px; line-height: 28px; color: #333; text-align: center;">
-                                <div class="text-large" style="font-family: Arial, Helvetica, san-serif; font-size: 21px; line-height: 28px; color: #333; font-weight: bold;">{% trans "Hi" %} {{friend_name|capfirst}}, {% if message %}{{message|linebreaksbr}}{% else %}{% blocktrans with sender_name|capfirst as name %}{{sender_name}} has referred you a link.{% endblocktrans %}{% endif %}</div>
+                                <div class="text-large" style="font-family: Arial, Helvetica, san-serif; font-size: 21px; line-height: 28px; color: #333; font-weight: bold;">{% trans "Hi" %} {{friend_name|capfirst}}, {{sender_name}} has shared a page with you.</div>
+
+                                {% if message %}
+                                <div class="text-large" style="font-family: Arial, Helvetica, san-serif; font-size: 21px; line-height: 28px; color: #333; font-weight: normal;">"{{message|linebreaksbr}}"</div>
+                                {% endif %}
                             </td>
                         </tr>
                         <tr class="hide-me">
@@ -144,7 +148,7 @@ img {
                                                 <table border="0" cellspacing="0" cellpadding="0" align="center">
                                                     <tr>
                                                         <td align="center" bgcolor="ffffff" align="center">
-                                                            <a href="{{url}}" target="_blank" style="font-size: 16px; font-family: 'Roboto', San Francisco, Helvetica, Arial, san-serif; color: #0094D5; text-decoration: none; text-decoration: none; padding-top: 15px; padding-right: 40px; padding-bottom: 15px; padding-left: 40px; line-height: normal; border: 2px solid #0094D5; display: inline-block;">View the article &raquo;</a>
+                                                            <a href="{{url}}" target="_blank" style="font-size: 16px; font-family: 'Roboto', San Francisco, Helvetica, Arial, san-serif; color: #0094D5; text-decoration: none; text-decoration: none; padding-top: 15px; padding-right: 40px; padding-bottom: 15px; padding-left: 40px; line-height: normal; border: 2px solid #0094D5; display: inline-block;">View page</a>
                                                         </td>
                                                     </tr>
                                                 </table>
