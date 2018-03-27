@@ -11,6 +11,10 @@ class ShareEmailForm(BetterForm):
     friend_email = forms.EmailField(label="Your friend's email address", widget=forms.EmailInput(attrs={'autocomplete': 'email'}))
     message = forms.CharField(widget=forms.Textarea(attrs={'rows': 3}), required=False)
 
+    data_title = forms.CharField(widget=forms.HiddenInput, max_length=250, required=False)
+    data_excerpt = forms.CharField(widget=forms.HiddenInput, max_length=5000, required=False)
+    data_image = forms.CharField(widget=forms.HiddenInput, max_length=250, required=False)
+
     class Meta:
         fields = [
             'url',
@@ -27,6 +31,9 @@ class ShareEmailForm(BetterForm):
                     ('friend_name', 'friend_email'),
                     'message',
                     'url',
+                    'data_title',
+                    'data_excerpt',
+                    'data_image',
                 ),
                 'legend': ''
             }),

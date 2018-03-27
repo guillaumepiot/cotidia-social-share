@@ -10,6 +10,11 @@ class ShareEmailSerializer(serializers.Serializer):
     friend_email = serializers.EmailField()
     message = serializers.CharField(required=False)
 
+    # Share data
+    data_title = serializers.CharField(required=False)
+    data_excerpt = serializers.CharField(required=False)
+    data_image = serializers.CharField(required=False)
+
     class Meta:
         fields = (
             'url',
@@ -17,5 +22,8 @@ class ShareEmailSerializer(serializers.Serializer):
             'sender_email',
             'friend_name',
             'friend_email',
-            'message'
+            'message',
+            'data_title',
+            'data_excerpt',
+            'data_image'
         )

@@ -34,6 +34,9 @@ class ShareEmail(APIView):
             friend_name = data.get('friend_name')
             friend_email = data.get('friend_email')
             message = data.get('message')
+            data_title = data.get('data_title')
+            data_excerpt = data.get('data_excerpt')
+            data_image = data.get('data_image')
 
             sender = '{} <{}>'.format(sender_name, sender_email)
             recipients = ['{} <{}>'.format(friend_name, friend_email)]
@@ -50,6 +53,9 @@ class ShareEmail(APIView):
                     'sender_name': sender_name,
                     'friend_name': friend_name,
                     'message': message,
+                    'data_title': data_title,
+                    'data_excerpt': data_excerpt,
+                    'data_image': data_image,
                 }
             )
 

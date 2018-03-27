@@ -40,7 +40,7 @@
     elm.addEventListener('click', function(e) {
         e.preventDefault()
         let loc = elm.getAttribute('href')
-        let title = elm.getAttribute('data-title')
+        let title = elm.dataset.title
         window.open('http://www.linkedin.com/shareArticle?mini=true&url=' + loc + '&title=' + title, 'linkedinwindow', getPopupArgs())
     })
   }
@@ -49,7 +49,7 @@
     elm.addEventListener('click', function(e) {
         e.preventDefault()
         let loc = elm.getAttribute('href')
-        let text = elm.getAttribute('data-text')
+        let text = elm.dataset.text
         window.open('http://twitter.com/share?url=' + loc + '&text=' + text, 'twitterwindow', getPopupArgs())
     })
   }
@@ -57,10 +57,19 @@
   function Email (elm) {
     elm.addEventListener('click', function(e) {
         e.preventDefault()
-        let loc = elm.getAttribute('href')
+        let loc = elm.dataset.url
+        let dataTitle = elm.dataset.title
+        let dataExcerpt = elm.dataset.excerpt
+        let dataImage = elm.dataset.image
         shareEmailModal.classList.add('dialog--modal-open')
-        let urlInput = document.querySelector('input#id_url');
+        let urlInput = document.querySelector('input#id_url')
+        let dataTitleInput = document.querySelector('input#id_data_title')
+        let dataExcerptInput = document.querySelector('input#id_data_excerpt')
+        let dataImageInput = document.querySelector('input#id_data_image')
         urlInput.value = loc
+        dataTitleInput.value = dataTitle
+        dataExcerptInput.value = dataExcerpt
+        dataImageInput.value = dataImage
         let successMessage = document.querySelector('form.share-email-form .success-message');
         if (successMessage) successMessage.remove()
     })
