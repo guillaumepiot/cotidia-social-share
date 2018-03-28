@@ -29,6 +29,28 @@ Include the bootstraing script on the page that needs sharing:
 <script type="text/javascript" src="{% static "js/cotidia.socialshare.js" %}"></script>
 ```
 
+Set Facebook app id:
+
+```python
+SOCIALSHARE_FACEBOOK_APP_ID = "1234"
+```
+
+## Context processor
+
+```python
+TEMPLATES = [
+    {
+        ...
+        'OPTIONS': {
+            'context_processors': [
+            ...
+                'cotidia.socialshare.context_processor.socialshare_settings',
+            ],
+        },
+    },
+]
+```
+
 ## Facebook share
 
 Use the `share-facebook` against the link element.
