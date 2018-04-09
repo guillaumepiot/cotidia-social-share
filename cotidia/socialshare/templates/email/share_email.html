@@ -159,14 +159,16 @@ img {
                     <tr>
                         <td class="" style="font-size: 30px; line-height: 30px;" height="30">&nbsp;</td>
                     </tr>
+                    {% if data_title %}
                     <tr>
                         <td class="container-padding" style="padding-left: 35px; padding-right: 35px; font-family: Arial, Helvetica, san-serif; font-weight: bold; font-size: 28px; line-height: 36px; color: #333; text-align: center;">
-                            <div class="text-large" style="font-family: Arial, Helvetica, san-serif; font-size: 28px; line-height: 36px; color: #333; font-weight: bold;">{% if data_title %}{{data_title}}{% else %}{{url}}{% endif %}</div>
+                            <div class="text-large" style="font-family: Arial, Helvetica, san-serif; font-size: 28px; line-height: 36px; color: #333; font-weight: bold;">{{data_title}}</div>
                         </td>
                     </tr>
                     <tr>
                         <td class="" style="font-size: 15px; line-height: 15px;" height="15">&nbsp;</td>
                     </tr>
+                    {% endif %}
                     {% if data_excerpt %}
                     <tr>
                         <td class="container-padding" style="padding-left: 45px; padding-right: 45px; font-family: Arial, Helvetica, san-serif; font-weight: bold; font-size: 16px; line-height: 22px; color: #666; text-align: center;">
@@ -189,7 +191,7 @@ img {
                                             <table border="0" cellspacing="0" cellpadding="0" align="center">
                                                 <tr>
                                                     <td align="center" bgcolor="ffffff" align="center">
-                                                        <a href="{{url}}" target="_blank" style="font-size: 16px; font-family: Arial, Helvetica, san-serif; color: #0094D5; text-decoration: none; text-decoration: none; padding-top: 13px; padding-right: 40px; padding-bottom: 13px; padding-left: 40px; line-height: normal; border: 2px solid #0094D5; display: inline-block;">View page</a>
+                                                        <a href="{{url}}" target="_blank" style="font-size: 16px; font-family: Arial, Helvetica, san-serif; color: #0094D5; text-decoration: none; text-decoration: none; padding-top: 13px; padding-right: 40px; padding-bottom: 13px; padding-left: 40px; line-height: normal; border: 2px solid #0094D5; display: inline-block;">{% if data_action_btn %}{{data_action_btn}}{% else %}View page{% endif %}</a>
                                                     </td>
                                                 </tr>
                                             </table>

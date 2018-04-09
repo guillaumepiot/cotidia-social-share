@@ -14,6 +14,7 @@ class ShareEmailForm(BetterForm):
     data_title = forms.CharField(widget=forms.HiddenInput, max_length=250, required=False)
     data_excerpt = forms.CharField(widget=forms.HiddenInput, max_length=5000, required=False)
     data_image = forms.CharField(widget=forms.HiddenInput, max_length=250, required=False)
+    data_action_btn = forms.CharField(widget=forms.HiddenInput, max_length=250, required=False)
 
     class Meta:
         fields = [
@@ -34,6 +35,7 @@ class ShareEmailForm(BetterForm):
                     'data_title',
                     'data_excerpt',
                     'data_image',
+                    'data_action_btn',
                 ),
                 'legend': ''
             }),

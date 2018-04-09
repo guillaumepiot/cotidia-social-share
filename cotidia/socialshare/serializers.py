@@ -14,6 +14,7 @@ class ShareEmailSerializer(serializers.Serializer):
     data_title = serializers.CharField(required=False)
     data_excerpt = serializers.CharField(required=False)
     data_image = serializers.CharField(required=False)
+    data_action_btn = serializers.CharField(required=False)
 
     class Meta:
         fields = (
@@ -25,5 +26,6 @@ class ShareEmailSerializer(serializers.Serializer):
             'message',
             'data_title',
             'data_excerpt',
-            'data_image'
+            'data_image',
+            'data_action_btn'
         )

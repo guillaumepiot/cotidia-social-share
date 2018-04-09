@@ -120,13 +120,13 @@ Output the modal form using the template tag:
 
 ```html
 {% load socialshare_tags %}
-{% share_email_html %}
+{% share_email_html data_title="The title" data_excerpt="A short description" data_image="An image url" data_action_btn="Text in the email link" %}
 ```
 
 Add the share link (Use the `share-email` against the link element):
 
 ```html
-<a href="<full_page_url>" title="Email this" class="share-email">
+<button data-url="<full_page_url>" title="Email this" class="share-email">Share</button>
 ```
 
 The `href` attribute will be the URL that you would like to share.

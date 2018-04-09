@@ -37,26 +37,32 @@ class ShareEmail(APIView):
             data_title = data.get('data_title')
             data_excerpt = data.get('data_excerpt')
             data_image = data.get('data_image')
+            data_action_btn = data.get('data_action_btn')
 
             sender = '{} <{}>'.format(sender_name, sender_email)
             recipients = ['{} <{}>'.format(friend_name, friend_email)]
             reply_to = sender
             subject = "{} has shared a page with you".format(sender_name)
 
+            context = {
+                'url': url,
+                'sender_name': sender_name,
+                'friend_name': friend_name,
+                'message': message,
+                'data_title': data_title,
+                'data_excerpt': data_excerpt,
+                'data_image': data_image,
+                'data_action_btn': data_action_btn
+            }
+
+            print(context)
+
             notice = ShareEmailNotice(
                 subject=subject,
                 sender=sender,
                 reply_to=reply_to,
                 recipients=recipients,
-                context={
-                    'url': url,
-                    'sender_name': sender_name,
-                    'friend_name': friend_name,
-                    'message': message,
-                    'data_title': data_title,
-                    'data_excerpt': data_excerpt,
-                    'data_image': data_image,
-                }
+                context=context
             )
 
             # Send the notice straight away
