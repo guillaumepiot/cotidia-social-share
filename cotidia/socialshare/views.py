@@ -55,8 +55,6 @@ class ShareEmail(APIView):
                 'data_action_btn': data_action_btn
             }
 
-            print(context)
-
             notice = ShareEmailNotice(
                 subject=subject,
                 sender=sender,

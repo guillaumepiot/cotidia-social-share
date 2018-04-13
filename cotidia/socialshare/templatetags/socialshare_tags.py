@@ -21,8 +21,6 @@ def share_email_html(
     if data_action_btn:
         initial['data_action_btn'] = data_action_btn
 
-    print('initial', initial)
-
     form = ShareEmailForm(initial=initial)
 
     return {'form': form}
