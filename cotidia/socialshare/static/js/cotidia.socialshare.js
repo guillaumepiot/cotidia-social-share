@@ -23,7 +23,8 @@
   function Facebook (elm) {
     elm.addEventListener('click', function(e) {
         e.preventDefault()
-        let loc = elm.getAttribute('href')
+        let loc = elm.dataset.url
+        if (!loc) loc = elm.getAttribute('href')
         window.open('https://www.facebook.com/dialog/share?app_id=' + window.facebookAppId + '&display=popup&href=' + loc, 'facebookwindow', getPopupArgs())
     })
   }
@@ -31,7 +32,8 @@
   function Google (elm) {
     elm.addEventListener('click', function(e) {
         e.preventDefault()
-        let loc = elm.getAttribute('href')
+        let loc = elm.dataset.url
+        if (!loc) loc = elm.getAttribute('href')
         window.open('https://plus.google.com/share?url=' + loc, 'googlewindow', getPopupArgs())
     })
   }
@@ -39,7 +41,8 @@
   function LinkedIn (elm) {
     elm.addEventListener('click', function(e) {
         e.preventDefault()
-        let loc = elm.getAttribute('href')
+        let loc = elm.dataset.url
+        if (!loc) loc = elm.getAttribute('href')
         let title = elm.dataset.title
         window.open('http://www.linkedin.com/shareArticle?mini=true&url=' + loc + '&title=' + title, 'linkedinwindow', getPopupArgs())
     })
@@ -48,7 +51,8 @@
   function Twitter (elm) {
     elm.addEventListener('click', function(e) {
         e.preventDefault()
-        let loc = elm.getAttribute('href')
+        let loc = elm.dataset.url
+        if (!loc) loc = elm.getAttribute('href')
         let text = elm.dataset.text
         window.open('http://twitter.com/share?url=' + loc + '&text=' + text, 'twitterwindow', getPopupArgs())
     })
@@ -64,6 +68,36 @@
         let successMessage = document.querySelector('form.share-email-form .success-message');
         if (successMessage) successMessage.remove()
     })
+  }
+
+  // Copy to clipboard
+
+  function fallbackCopyTextToClipboard (elm) {
+    var textArea = document.createElement("textarea");
+    textArea.value = elm.dataset.url;
+    elm.parentNode.insertBefore(textArea, elm.nextSibling);
+    textArea.focus();
+    textArea.select();
+
+    try {
+      var successful = document.execCommand('copy');
+      var msg = successful ? 'successful' : 'unsuccessful';
+    } catch (err) {
+      console.error('Fallback: Oops, unable to copy', err);
+    }
+
+    textArea.remove()
+  }
+
+  function copyTextToClipboard (elm) {
+    if (!navigator.clipboard) {
+      fallbackCopyTextToClipboard(elm);
+      return;
+    }
+    navigator.clipboard.writeText(elm.dataset.url).then(function() {
+    }, function(err) {
+      console.error('Async: Could not copy text: ', err);
+    });
   }
 
   // Share email
@@ -184,6 +218,16 @@
     Array.prototype.forEach.call(email_elms, function (elm) {
       Email(elm)
     })
+
+    var copy_elms = document.querySelectorAll('.copy-clipboard');
+    Array.prototype.forEach.call(copy_elms, function (elm) {
+      elm.addEventListener('click', function(event) {
+        event.preventDefault()
+        copyTextToClipboard(elm);
+      });
+    })
+
+
 
     document.querySelectorAll("form.share-email-form").forEach(function (elm) {
       elm.addEventListener("submit", function (e) {

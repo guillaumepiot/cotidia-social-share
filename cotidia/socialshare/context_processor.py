@@ -1,4 +1,4 @@
-from django.conf import settings
+from cotidia.socialshare.conf import settings
 
 
 def socialshare_settings(request):

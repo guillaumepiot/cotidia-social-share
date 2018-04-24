@@ -58,10 +58,10 @@ Use the `share-facebook` against the link element.
 E.g.:
 
 ```html
-<a href="<full_page_url>" title="Share on Facebook" class="share-facebook">Share on Facebook</a>
+<button data-url="<full_page_url>" title="Share on Facebook" class="share-facebook">Share on Facebook</button>
 ```
 
-The `href` attribute will be the URL that you would like to share.
+The `data-url` attribute will be the URL that you would like to share.
 
 
 ## Twitter share
@@ -71,10 +71,10 @@ Use the `share-twitter` against the link element. Use `data-text` to setup a def
 E.g.:
 
 ```html
-<a href="<full_page_url>" title="Share on Twitter" class="share-twitter" data-text="Best page ever">Share on Twitter</a>
+<button data-url="<full_page_url>" title="Share on Twitter" class="share-twitter" data-text="Best page ever">Share on Twitter</button>
 ```
 
-The `href` attribute will be the URL that you would like to share.
+The `data-url` attribute will be the URL that you would like to share.
 
 ## LinkedIn share
 
@@ -83,10 +83,10 @@ Use the `share-linkedin` against the link element. Use `data-title` to setup a d
 E.g.:
 
 ```html
-<a href="<full_page_url>" title="Share on LinkedIn" class="share-linkedin" data-title="Best page ever">Share on LinkedIn</a>
+<button data-url="<full_page_url>" title="Share on LinkedIn" class="share-linkedin" data-title="Best page ever">Share on LinkedIn</button>
 ```
 
-The `href` attribute will be the URL that you would like to share.
+The `data-url` attribute will be the URL that you would like to share.
 
 ## Google+
 
@@ -95,10 +95,24 @@ Use the `share-google` against the link element.
 E.g.:
 
 ```html
-<a href="<full_page_url>" title="Share on Google" class="share-google">Share on Google</a>
+<button data-url="<full_page_url>" title="Share on Google" class="share-google">Share on Google</button>
 ```
 
-The `href` attribute will be the URL that you would like to share.
+The `data-url` attribute will be the URL that you would like to share.
+
+
+## Copy to clipboard
+
+Use the `copy-clipboard` against the link element.
+
+E.g.:
+
+```html
+<button data-url="<full_page_url>" title="Copy page url to clipboard" class="copy-clipboard">Copy to clipboard</button>
+```
+
+The `data-url` attribute will be the URL that you would like to share.
+
 
 ## Share email
 
@@ -129,4 +143,4 @@ Add the share link (Use the `share-email` against the link element):
 <button data-url="<full_page_url>" title="Email this" class="share-email">Share</button>
 ```
 
-The `href` attribute will be the URL that you would like to share.
+The `data-url` attribute will be the URL that you would like to share.
