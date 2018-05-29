@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from recaptcha.fields import ReCaptchaField
 
 
 class ShareEmailSerializer(serializers.Serializer):
@@ -24,8 +25,13 @@ class ShareEmailSerializer(serializers.Serializer):
             'friend_name',
             'friend_email',
             'message',
+            'g-recaptcha-response',
             'data_title',
             'data_excerpt',
             'data_image',
             'data_action_btn'
         )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["g-recaptcha-response"] = ReCaptchaField(write_only=True)

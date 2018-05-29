@@ -1,4 +1,6 @@
 from django import forms
+from captcha.fields import ReCaptchaField
+
 
 from betterforms.forms import BetterForm
 
@@ -27,6 +29,8 @@ class ShareEmailForm(BetterForm):
         required=False
     )
 
+    captcha = ReCaptchaField()
+
     data_title = forms.CharField(
         widget=forms.HiddenInput, max_length=250, required=False
     )
@@ -48,6 +52,7 @@ class ShareEmailForm(BetterForm):
             'friend_name',
             'friend_email',
             'message'
+            'captcha'
         ]
         fieldsets = (
             ('options', {
@@ -60,6 +65,7 @@ class ShareEmailForm(BetterForm):
                     'data_excerpt',
                     'data_image',
                     'data_action_btn',
+                    'captcha',
                 ),
                 'legend': ''
             }),
