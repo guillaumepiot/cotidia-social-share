@@ -12,6 +12,7 @@
                 </button>
             </div>
         </div>
+        <script src='https://www.google.com/recaptcha/api.js{% if lang %}?hl={{ lang  }}{% endif %}'></script>
         <div class="dialog__body">
                 {% csrf_token %}
                 {% with fieldset_template_name="admin/generic/form/fieldset_as_div.html" field_template_name="admin/generic/form/field_as_div.html" %}
@@ -28,12 +29,22 @@
         </div>
         <div class="dialog__footer dialog-footer dialog-section--padded">
             <div class="dialog-footer__actions">
-                <button class="btn btn--primary" type="submit">Share</button>
+                <button class="btn btn--primary share-button" type="submit" disabled>Share</button>
             </div>
             <div class="dialog-footer__actions">
                 <button class="btn btn--cancel close-dialog">Close</button>
             </div>
         </div>
+        <script>
+            function recaptchaCallback() {
+                button.removeAttribute("disabled");
+            }
+            (function(){
+                button = document.querySelector('.share-button');
+                captcha = document.querySelector('.g-recaptcha');
+                captcha.setAttribute("data-callback", "recaptchaCallback")
+            })()
+        </script>
         </form>
     </div>
 </div>
