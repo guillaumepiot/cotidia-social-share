@@ -26,7 +26,7 @@ class ShareEmail(APIView):
 
         serializer = ShareEmailSerializer(data=request.data)
 
-        if serializer.is_valid() and request.recaptcha_is_valid:
+        if serializer.is_valid():
             data = serializer.data
 
             url = data.get('url')
