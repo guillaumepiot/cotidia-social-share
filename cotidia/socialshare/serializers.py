@@ -10,6 +10,7 @@ class ShareEmailSerializer(serializers.Serializer):
     friend_name = serializers.CharField()
     friend_email = serializers.EmailField()
     message = serializers.CharField(required=False)
+    captcha = ReCaptchaField(write_only=True, required=False)
 
     # Share data
     data_title = serializers.CharField(required=False)
@@ -25,7 +26,7 @@ class ShareEmailSerializer(serializers.Serializer):
             'friend_name',
             'friend_email',
             'message',
-            'g-recaptcha-response',
+            'captcha',
             'data_title',
             'data_excerpt',
             'data_image',
@@ -33,5 +34,9 @@ class ShareEmailSerializer(serializers.Serializer):
         )
 
     def __init__(self, *args, **kwargs):
+        data = kwargs.get("data", False)
+        if data:
+            initial_data = data.copy()
+            initial_data["captcha"] = data.get("g-recaptcha-response","Invalid")
+            kwargs["data"] = initial_data
         super().__init__(*args, **kwargs)
-        self.fields["g-recaptcha-response"] = ReCaptchaField(write_only=True)
