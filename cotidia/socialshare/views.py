@@ -7,7 +7,6 @@ from rest_framework.renderers import JSONRenderer
 
 from cotidia.socialshare.serializers import ShareEmailSerializer
 from cotidia.socialshare.notices import ShareEmailNotice
-from cotidia.socialshare.utils import check_recaptcha
 
 
 class ShareEmail(APIView):
