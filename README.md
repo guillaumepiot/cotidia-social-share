@@ -15,7 +15,17 @@ Social share also support email sharing by generating a modal form.
 
 ## Install
 
-Add `cotidia.socialshare` to your settings `INSTALLED_APPS`.
+Add `cotidia.socialshare` `captcha` `recaptcha` to your settings `INSTALLED_APPS`.
+
+```
+INSTALLED_APPS = [
+    ...
+    'cotidia.socialshare',
+    'captcha',
+    'recaptcha',
+]
+
+```
 
 Load `socialshare_tags` in your template.
 
@@ -34,6 +44,23 @@ Set Facebook app id:
 ```python
 SOCIALSHARE_FACEBOOK_APP_ID = "1234"
 ```
+
+### Set up recaptcha secrets
+
+Go to: https://www.google.com/recaptcha/intro/index.html and set up recaptcha. You should include the production and staging sites as hosts as well as localhost (but only during development)
+
+At the end of the process you should have two secrets:
+ * A public `Site` Key
+ * A private `Server` Key
+
+In settings add the following entries:
+
+```
+RECAPTCHA_PUBLIC_KEY = '<<SITE KEY>>'
+RECAPTCHA_PRIVATE_KEY = '<<SERVVER KEY>>'
+GR_CAPTCHA_SECRET_KEY = RECAPTCHA_PRIVATE_KEY
+```
+The last line is required because the rest-recaptcha and form recaptcha librarys use different variable names
 
 ## Context processor
 
