@@ -61,10 +61,29 @@
   function Email (elm) {
     elm.addEventListener('click', function(e) {
         e.preventDefault()
-        let loc = 'url' in elm.dataset ? elm.dataset.url : null
         shareEmailModal.classList.add('dialog--modal-open')
+
+        // Get data values fro the link being clicked
+        let loc = 'url' in elm.dataset ? elm.dataset.url : null
+        let title = 'title' in elm.dataset ? elm.dataset.title : null
+        let excerpt = 'excerpt' in elm.dataset ? elm.dataset.excerpt : null
+        let image = 'image' in elm.dataset ? elm.dataset.image : null
+        let actionBtn = 'action-btn' in elm.dataset ? elm.dataset['action-btn'] : null
+
+        // Get the form fields
         let urlInput = document.querySelector('input#id_url')
+        let titleInput = document.querySelector('input#id_data_title')
+        let excerptInput = document.querySelector('input#id_data_excerpt')
+        let imageInput = document.querySelector('input#id_data_image')
+        let actionBtnInput = document.querySelector('input#id_data_action_btn')
+
+        // Assign those data values to the form fields
         if (loc) urlInput.value = loc
+        if (title) titleInput.value = title
+        if (excerpt) excerptInput.value = excerpt
+        if (image) imageInput.value = image
+        if (actionBtn) actionBtnInput.value = actionBtn
+
         let successMessage = document.querySelector('form.share-email-form .success-message');
         if (successMessage) successMessage.remove()
     })
