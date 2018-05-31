@@ -1,4 +1,5 @@
 from django.db import transaction
+from django.conf import settings
 
 from rest_framework import status
 from rest_framework.views import APIView
@@ -42,7 +43,9 @@ class ShareEmail(APIView):
             sender = '{} <{}>'.format(sender_name, sender_email)
             recipients = ['{} <{}>'.format(friend_name, friend_email)]
             reply_to = sender
-            subject = "{} has shared a page with you".format(sender_name)
+            subject = getattr(settings, "SOCIALSHARE_EMAIL_SUBJECT", "{} has shared a page with you")
+            if "{}" in subject:
+                subject = subject.format(sender_name)
 
             context = {
                 'url': url,
