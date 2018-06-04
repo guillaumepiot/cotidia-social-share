@@ -177,7 +177,7 @@ If you want a custom subject to the email you can add this into the settings fil
 SOCIALSHARE_EMAIL_SUBJECT = "An email subject"
 ```
 
-To include the sender's name include `{}` eg:
+To include the sender's name, or invitee's name include `{sender_name}` or `{friend_name}` eg:
 ```
-SOCIALSHARE_EMAIL_SUBJECT = "{} sent you an email"
+SOCIALSHARE_EMAIL_SUBJECT = "{sender_name} sent you an email"
 ```

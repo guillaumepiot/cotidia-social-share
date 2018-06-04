@@ -44,8 +44,11 @@ class ShareEmail(APIView):
             recipients = ['{} <{}>'.format(friend_name, friend_email)]
             reply_to = sender
             subject = getattr(settings, "SOCIALSHARE_EMAIL_SUBJECT", "{} has shared a page with you")
-            if "{}" in subject:
-                subject = subject.format(sender_name)
+            if "{sender_name}" in subject:
+                subject = subject.format(sender_name=sender_name)
+
+            if "{friend_name}" in subject:
+                subject = subject.format(friend_name=friend_name)
 
             context = {
                 'url': url,
