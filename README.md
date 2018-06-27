@@ -181,11 +181,17 @@ Add the share link (Use the `share-email` against the link element):
 The `data-url` attribute will be the URL that you would like to share.
 
 If you want a custom subject to the email you can add this into the settings file:
+
 ```
 SOCIALSHARE_EMAIL_SUBJECT = "An email subject"
 ```
 
-To include the sender's name, or invitee's name include `{sender_name}` or `{friend_name}` eg:
+To include the sender's name, or invitee's name include `{sender_name}` or `{friend_name}` e.g.:
+
 ```
-SOCIALSHARE_EMAIL_SUBJECT = "{sender_name} sent you an email"
+SOCIALSHARE_EMAIL_SUBJECT = "{sender_name} thinks you will like this"
+
+# or
+
+SOCIALSHARE_EMAIL_SUBJECT = "Hi {friend_name}, {sender_name} shared a page with you"
 ```

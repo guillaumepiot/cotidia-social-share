@@ -43,12 +43,8 @@ class ShareEmail(APIView):
             sender = '{} <{}>'.format(sender_name, sender_email)
             recipients = ['{} <{}>'.format(friend_name, friend_email)]
             reply_to = sender
-            subject = getattr(settings, "SOCIALSHARE_EMAIL_SUBJECT", "{} has shared a page with you")
-            if "{sender_name}" in subject:
-                subject = subject.format(sender_name=sender_name)
-
-            if "{friend_name}" in subject:
-                subject = subject.format(friend_name=friend_name)
+            subject = getattr(settings, "SOCIALSHARE_EMAIL_SUBJECT", "{sender_name} has shared a page with you")
+            subject = subject.format(sender_name=sender_name, friend_name=friend_name)
 
             context = {
                 'url': url,
