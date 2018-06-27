@@ -62,6 +62,14 @@ GR_CAPTCHA_SECRET_KEY = RECAPTCHA_PRIVATE_KEY
 ```
 The last line is required because the rest-recaptcha and form recaptcha librarys use different variable names
 
+### Use no captcha
+
+Google now enforces No Captcha (mouse click in check box), use the following setting to enable it:
+
+```python
+NOCAPTCHA = True
+```
+
 ## Context processor
 
 ```python
